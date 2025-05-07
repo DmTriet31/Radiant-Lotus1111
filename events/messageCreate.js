@@ -44,8 +44,8 @@ if (channelId === fixedChannelId) {
     }
 }
 
-// === auto react ảnh/video trong kênh media ===
-const mediaChannelId = '987654321098765432'; // Kênh chứa ảnh/video chung
+// === auto react Locket ảnh/video trong kênh media ===
+const mediaChannelId = '1367995671424270357'; // Kênh chứa ảnh/video chung
 if (channelId === mediaChannelId) {
     const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
     const hasVideo = message.attachments.some(att => att.contentType?.startsWith('video/'));
@@ -63,7 +63,7 @@ if (channelId === mediaChannelId) {
 }
 
 // === auto react kênh meme ===
-const memeChannelId = '123123123123123123'; // Kênh chứa meme
+const memeChannelId = '1367120796891353129'; // Kênh chứa meme
 if (channelId === memeChannelId) {
     const isMeme = message.attachments.some(att => att.contentType?.startsWith('image/')) || message.content.length > 0;
 
@@ -80,7 +80,7 @@ if (channelId === memeChannelId) {
 }
 
 // === auto react kênh selfie ===
-const selfieChannelId = '555555555555555555'; // Kênh gửi ảnh selfie
+const selfieChannelId = '1367120801370996858'; // Kênh gửi ảnh selfie
 if (channelId === selfieChannelId) {
     const isSelfie = message.attachments.some(att => att.contentType?.startsWith('image/'));
 
