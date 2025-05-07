@@ -40,9 +40,9 @@ module.exports = {
             const legitRegex = /^\+1\s+legit\s+.+/i;
             if (legitRegex.test(message.content.trim())) {
                 const emojis = [
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>')   // Thay emoji theo ID trong server
                 ];
                 try {
                     for (const emoji of emojis) {
@@ -62,9 +62,9 @@ module.exports = {
 
             if (hasImage || hasVideo) {
                 const mediaEmojis = [
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>')   // Thay emoji theo ID trong server
                 ];
                 try {
                     for (const emoji of mediaEmojis) {
@@ -87,9 +87,9 @@ module.exports = {
 
             if (isMeme) {
                 const memeEmojis = [
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>')   // Thay emoji theo ID trong server
                 ];
                 try {
                     for (const emoji of memeEmojis) {
@@ -108,9 +108,9 @@ module.exports = {
 
             if (isSelfie) {
                 const selfieEmojis = [
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
-                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('<a:RL_62802:1367510028613062656>')   // Thay emoji theo ID trong server
                 ];
                 try {
                     for (const emoji of selfieEmojis) {
