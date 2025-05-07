@@ -65,9 +65,11 @@ if (channelId === mediaChannelId) {
 // === auto react kênh meme ===
 const memeChannelId = '1367120796891353129'; // Kênh chứa meme
 if (channelId === memeChannelId) {
-    const isMeme = message.attachments.some(att => att.contentType?.startsWith('image/')) || message.content.length > 0;
+    // Regex để kiểm tra có URL trong tin nhắn không
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const hasLink = urlRegex.test(message.content);
 
-    if (isMeme) {
+    if (hasLink) {
         const memeEmojis = ['🤣', '💀', '🔥'];
         try {
             for (const emoji of memeEmojis) {
@@ -78,6 +80,7 @@ if (channelId === memeChannelId) {
         }
     }
 }
+
 
 // === auto react kênh selfie ===
 const selfieChannelId = '1367120801370996858'; // Kênh gửi ảnh selfie
