@@ -28,6 +28,101 @@ module.exports = {
         const guildId = message.guild.id;
         const channelId = message.channel.id;
         const content = message.content.toLowerCase().trim(); 
+module.exports = {
+    name: 'messageCreate',
+    async execute(message, client) {
+        if (message.author.bot || !message.guild) return;
+
+        // === +1 legit handler ===
+        const fixedChannelId = '1367651773963178054'; // Kênh dùng lệnh +1 legit
+        const channelId = message.channel.id;
+        if (channelId === fixedChannelId) {
+            const legitRegex = /^\+1\s+legit\s+.+/i;
+            if (legitRegex.test(message.content.trim())) {
+                const emojis = [
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                ];
+                try {
+                    for (const emoji of emojis) {
+                        await message.react(emoji);
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi thêm emoji +1 legit:', error);
+                }
+            }
+        }
+
+        // === auto react ảnh/video trong kênh media ===
+        const mediaChannelId = '1367995671424270357'; // Kênh chứa ảnh/video chung
+        if (channelId === mediaChannelId) {
+            const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
+            const hasVideo = message.attachments.some(att => att.contentType?.startsWith('video/'));
+
+            if (hasImage || hasVideo) {
+                const mediaEmojis = [
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                ];
+                try {
+                    for (const emoji of mediaEmojis) {
+                        await message.react(emoji);
+                    }
+                } catch (err) {
+                    console.error('Lỗi khi auto react ảnh/video:', err);
+                }
+            }
+        }
+
+        // === auto react kênh meme ===
+        const memeChannelId = '1367120796891353129'; // Kênh chứa meme
+        if (channelId === memeChannelId) {
+            const isImageAttachment = message.attachments.some(att => att.contentType?.startsWith('image/'));
+            const hasText = message.content.length > 0;
+            const hasImageLink = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp))/i.test(message.content);
+
+            const isMeme = isImageAttachment || hasText || hasImageLink;
+
+            if (isMeme) {
+                const memeEmojis = [
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                ];
+                try {
+                    for (const emoji of memeEmojis) {
+                        await message.react(emoji);
+                    }
+                } catch (err) {
+                    console.error('Lỗi khi auto react meme:', err);
+                }
+            }
+        }
+
+        // === auto react kênh selfie ===
+        const selfieChannelId = '1367120801370996858'; // Kênh gửi ảnh selfie
+        if (channelId === selfieChannelId) {
+            const isSelfie = message.attachments.some(att => att.contentType?.startsWith('image/'));
+
+            if (isSelfie) {
+                const selfieEmojis = [
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere'),  // Thay emoji theo ID trong server
+                    client.emojis.cache.get('emojiIdHere')   // Thay emoji theo ID trong server
+                ];
+                try {
+                    for (const emoji of selfieEmojis) {
+                        await message.react(emoji);
+                    }
+                } catch (err) {
+                    console.error('Lỗi khi auto react selfie:', err);
+                }
+            }
+        }
+    },
+};
 
         const countingData = await countingCollection.findOne({ guildId });
 
