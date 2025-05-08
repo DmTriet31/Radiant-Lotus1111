@@ -48,7 +48,7 @@ module.exports = {
       .setTimestamp();
 
     try {
-      const channel = guild.channels.cache.get('1367120842130980896'); // ID kênh gửi đối tác
+      const channel = guild.channels.cache.get('1367120844878254202'); // ID kênh gửi đối tác
       if (!channel) {
         return interaction.reply({ content: '❌ Không tìm thấy kênh đối tác!', ephemeral: true });
       }
