@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -27,11 +27,12 @@ module.exports = {
                       || guild.iconURL({ dynamic: true, size: 1024 }) 
                       || 'https://i.imgur.com/Z8e2Trs.png';
 
+    // Tạo embed chứa thông tin đối tác
     const embed = new EmbedBuilder()
       .setColor(0x00AEFF)
       .setThumbnail(user.displayAvatarURL({ dynamic: true }))
       .setImage(serverBanner)
-      .setDescription(`**Đại diện:** ${user}\n**Link:** *(xem ở trên)*`)
+      .setDescription(`**Đại diện:** ${user}\n**Link:** [Bấm vào đây để join](${link})`)
       .setFooter({
         text: `Đại diện bên mình: ${interaction.user.tag} | ${new Date().toLocaleString()}`,
         iconURL: interaction.user.displayAvatarURL()
@@ -44,10 +45,20 @@ module.exports = {
         return interaction.reply({ content: '❌ Không tìm thấy kênh đối tác!', ephemeral: true });
       }
 
+      // Tạo nút tham gia với link
+      const joinButton = new ButtonBuilder()
+        .setLabel('Bấm vào đây để join')
+        .setStyle(5) // Tạo nút liên kết
+        .setURL(link);
+
+      // Tạo ActionRow chứa nút
+      const actionRow = new ActionRowBuilder().addComponents(joinButton);
+
       // Gửi tin nhắn: link nằm ngoài embed → có JOIN button
       await channel.send({
-        content: link,      // 👈 Bắt buộc để Discord tạo preview + nút Tham gia
-        embeds: [embed]
+        content: `Đối tác mới: ${user.tag}`, // Gửi thông tin người đại diện
+        embeds: [embed],
+        components: [actionRow] // Thêm nút tham gia
       });
 
       const member = await guild.members.fetch(user.id);
