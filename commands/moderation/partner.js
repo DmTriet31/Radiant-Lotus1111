@@ -27,7 +27,7 @@ module.exports = {
       .setThumbnail(user.displayAvatarURL({ dynamic: true })) // Avatar của người đại diện
       .setDescription(`**Đại diện:** ${user.tag}\n**Link:** ${link}`) // Hiển thị rõ link mà không cần dấu ngoặc vuông
       .setFooter({
-        text: `Đại diện bên mình: ${interaction.user.tag} | ${new Date().toLocaleString()}`,
+        text: `bên mình: ${interaction.user.tag} | ${new Date().toLocaleString()}`,
         iconURL: interaction.user.displayAvatarURL()
       })
       .setTimestamp();
