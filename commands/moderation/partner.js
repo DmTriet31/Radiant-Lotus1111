@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,15 +21,11 @@ module.exports = {
 
     const partnerRoleId = '1367120701869260941';   // Role cấp cho đại diện
 
-    // Lấy banner hoặc icon server (ảnh nền embed) từ link (mặc định là một banner từ server bạn)
-    const serverBanner = 'https://i.imgur.com/Z8e2Trs.png'; // Placeholder banner URL
-
-    // Tạo embed chứa thông tin đối tác
+    // Tạo embed chứa thông tin đối tác mà không có nút và banner
     const embed = new EmbedBuilder()
       .setColor(0x00AEFF)
       .setThumbnail(user.displayAvatarURL({ dynamic: true })) // Avatar của người đại diện
-      .setImage(serverBanner) // Banner của server đối tác
-      .setDescription(`**Đại diện:** ${user}\n**Link:** [Bấm vào đây để join](${link})`)
+      .setDescription(`**Đại diện:** ${user.tag}\n**Link:** ${link}`) // Hiển thị rõ link mà không cần dấu ngoặc vuông
       .setFooter({
         text: `Đại diện bên mình: ${interaction.user.tag} | ${new Date().toLocaleString()}`,
         iconURL: interaction.user.displayAvatarURL()
@@ -42,19 +38,10 @@ module.exports = {
         return interaction.reply({ content: '❌ Không tìm thấy kênh đối tác!', ephemeral: true });
       }
 
-      // Tạo nút tham gia với link
-      const joinButton = new ButtonBuilder()
-        .setLabel('Bấm vào đây để join')
-        .setStyle(5) // Tạo nút liên kết
-        .setURL(link);
-
-      // Tạo ActionRow chứa nút
-      const actionRow = new ActionRowBuilder().addComponents(joinButton);
-
-      // Gửi tin nhắn chỉ với embed (bao gồm thông tin người đại diện và banner server đối tác)
+      // Gửi tin nhắn chỉ với embed (bao gồm thông tin người đại diện)
       await channel.send({
-        embeds: [embed],
-        components: [actionRow] // Thêm nút tham gia
+        content: `${link}`, // Gửi link trực tiếp ra ngoài embed
+        embeds: [embed], // Chỉ bao gồm embed
       });
 
       // Cấp quyền cho người đại diện
