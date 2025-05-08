@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ActionRowBuilder, Perm
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('partner')
-    .setDescription(<a:RL_arrow:1367510296020783184>'Gửi thông tin đối tác')
+    .setDescription('Gửi thông tin đối tác')
     .addUserOption(option =>
       option.setName('đại_diện')
         .setDescription('Người đại diện cho đối tác')
